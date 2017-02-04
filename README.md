@@ -1,4 +1,4 @@
-# Spec
+# Citation
 
 ## Scope
 
