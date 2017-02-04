@@ -1,0 +1,31 @@
+{
+	"name": "citation/citation",
+	"type": "mediawiki-extension",
+	"description": "Extension containing the citation qualification methods",
+	"keywords": ["citation"],
+	"homepage": "https://www.mediawiki.org/wiki/Extension:Citation",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "John Erling Blad",
+			"email": "jeblad@gmail.com",
+			"homepage": "http://wiki.jeb.com",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://bugzilla.wikimedia.org/",
+		"irc": "irc://irc.freenode.net/mediawiki",
+		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Citation",
+		"wiki": "https://www.mediawiki.org/wiki/Extension:Citation"
+	},
+	"require": {
+		"php": ">=5.3.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "*"
+	},
+	"suggest": {
+		"mediawiki/core" : "dev-master"
+	}
+}
