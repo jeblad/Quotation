@@ -11,9 +11,9 @@
  * @licence GNU GPL v2+
  */
 
-$magicWords = array();
+$magicWords = [];
 
 /** English (English) */
-$magicWords['en'] = array(
-	'quote' => array( 0, 'quote' ),
-);
+$magicWords['en'] = [
+	'quote' => [ 0, 'quote' ],
+];

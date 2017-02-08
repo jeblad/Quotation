@@ -40,5 +40,5 @@ interface IParser {
 	 *
 	 * @return array
 	 */
-	public function filter( $data, array $opts = array() );
+	public function filter( $data, array $opts = [] );
 }

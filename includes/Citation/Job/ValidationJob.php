@@ -1,7 +1,9 @@
 <?php
 
 namespace Citation\Job;
-use Html, Job;
+
+use Html;
+use Job;
 
 /**
  * Job for validation of Quote objects.

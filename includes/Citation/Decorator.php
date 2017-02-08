@@ -1,6 +1,7 @@
 <?php
 
 namespace Citation;
+
 use Html;
 
 /**
@@ -31,10 +32,11 @@ use Html;
  */
 class Decorator {
 
-	public function format( array $params, array $valids = array() ) {
-		$slices = array();
-		$allValidated = array_key_exists( 'quote', $params ) && ( count( $params['quote']->getQuotes() ) === count( $valids ) );
-		$attributes = array( 'lang' => 'auto' );
+	public function format( array $params, array $valids = [] ) {
+		$slices = [];
+		$allValidated = array_key_exists( 'quote', $params )
+			&& ( count( $params['quote']->getQuotes() ) === count( $valids ) );
+		$attributes = [ 'lang' => 'auto' ];
 
 		if ( array_key_exists( 'format', $params ) ) {
 			switch ( $params['format'] ) {
@@ -47,24 +49,26 @@ class Decorator {
 				default:
 					$tag = 'div';
 			}
-		}
-		else {
+		} else {
 			$tag = 'div';
 		}
 
 		reset( $valids );
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": quotes\n" . print_r( $params['quote']->getQuotes(), true ) );
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": valids\n" . print_r( $valids, true ) );
+		wfDebugLog( __CLASS__,
+			__FUNCTION__ . ": quotes\n" . print_r( $params['quote']->getQuotes(), true ) );
+		wfDebugLog( __CLASS__,
+			__FUNCTION__ . ": valids\n" . print_r( $valids, true ) );
 		foreach ( $params['quote']->getQuotes() as $quote ) {
 			if ( $allValidated ) {
 				list( , $valid ) = each( $valids );
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": valid\n" . print_r( $valid, true ) . "\n");
+				wfDebugLog( __CLASS__,
+					__FUNCTION__ . ": valid\n" . print_r( $valid, true ) . "\n" );
 				$attr = array_merge(
 					$attributes,
-					array(
+					[
 						'class' => $valid === false ? 'quote-invalid' : 'quote-valid',
 						'title' => $valid === false ? '' : htmlspecialchars( $valid ),
-					)
+					]
 				);
 			}
 			$slices[] = \Html::element(

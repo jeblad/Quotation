@@ -1,7 +1,9 @@
 <?php
 
 namespace Citation\Job;
-use Html, Job;
+
+use Html;
+use Job;
 
 /**
  * Validation of Quote objects.
@@ -36,7 +38,7 @@ class Validation {
 	 *
 	 * @return bool
 	 */
-	public function execute( \Title $title, $params = array(), $id = 1 ) {
+	public function execute( \Title $title, $params = [], $id = 1 ) {
 		global $wgMemc;
 		wfDebugLog( __CLASS__, __FUNCTION__ . ": handling request " . $title->getText() );
 
@@ -48,7 +50,7 @@ class Validation {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ": reporting " . print_r( $fragments, true ) );
 		}
 
-		$valid = array();
+		$valid = [];
 		if ( array_key_exists( 'quote', $params ) ) {
 			if ( array_key_exists( 'quote', $params ) ) {
 				$valid = $params['quote']->validate( $fragments );
@@ -56,11 +58,11 @@ class Validation {
 		}
 
 		if ( array_key_exists( 'signature', $params ) ) {
-			//$key = wfMemcKey( $this->params );
+			// $key = wfMemcKey( $this->params );
 			$wgMemc->set(
 				$params['signature'],
 				$valid,
-				10 //60 * 15
+				10 // 60 * 15
 			);
 		}
 
@@ -70,9 +72,9 @@ class Validation {
 	/**
 	 * Save validation results in the page_props table
 	 *
-	 * @return 
+	 * @return
 	 */
 	public function save() {
-		
+
 	}
 }

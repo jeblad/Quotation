@@ -28,63 +28,68 @@ class HtmlParserTest extends \MediaWikiTestCase {
 	public function testFilter( $html, $opts, $expected ) {
 		$parser = new \Citation\Parser\HtmlParser();
 		$filtered = $parser->filter( $html, $opts );
-		//print_r($filtered);
-		$this->assertEquals( $expected, $filtered, 'Filtering the html did not produce the expected result' );
+		// print_r($filtered);
+		$this->assertEquals(
+			$expected,
+			$filtered,
+			'Filtering the html did not produce the expected result'
+		);
 	}
 
 	public static function provideHtml() {
-		return array(
-				array(
+		return [
+				// test empty content
+				[
 					"",
-					array(),
-					array( "" )
-				),
+					[],
+					[ "" ]
+				],
 				// remove tags and content
-				array(
+				[
 					"<head></head>",
-					array(),
-					array( "" )
-				),
-				array(
+					[],
+					[ "" ]
+				],
+				[
 					"<HEAD some='thing'>\nfoo\n</head>",
-					array(),
-					array( "" )
-				),
+					[],
+					[ "" ]
+				],
 				// remove tags, keep content
-				array(
+				[
 					"<body></body>",
-					array(),
-					array( "" )
-				),
-				array(
+					[],
+					[ "" ]
+				],
+				[
 					"<BODY some='thing'>\nfoo\n</body>",
-					array(),
-					array( " foo " )
-				),
+					[],
+					[ " foo " ]
+				],
 				// remove within angular brackets
-				array(
+				[
 					"<!--\nfoo\n-->",
-					array(),
-					array( "" )
-				),
-				array(
+					[],
+					[ "" ]
+				],
+				[
 					"<ping>",
-					array(),
-					array( "" )
-				),
-				array(
+					[],
+					[ "" ]
+				],
+				[
 					"</pOng\n>",
-					array(),
-					array( "" )
-				),
+					[],
+					[ "" ]
+				],
 				// merge spaces
-				array(
+				[
 					"  \n\t\n\n  ",
-					array(),
-					array( " " )
-				),
+					[],
+					[ " " ]
+				],
 				// full test
-				array(
+				[
 					"<html>"
 					. "<head>"
 					. "<style>\nfoo\n</style>"
@@ -96,11 +101,11 @@ class HtmlParserTest extends \MediaWikiTestCase {
 					. "\t\t\tbar\n\n\n"
 					. "</body>"
 					. "</html>",
-					array(),
-					array( " bar " )
-				),
+					[],
+					[ " bar " ]
+				],
 				// full test with xpath
-				array(
+				[
 					"<html>"
 					. "<head>"
 					. "<style>\nfoo\n</style>"
@@ -112,10 +117,10 @@ class HtmlParserTest extends \MediaWikiTestCase {
 					. "<p>bar</p>"
 					. "</body>"
 					. "</html>",
-					array( 'xpath' => '/html/body/p' ),
-					array( 'foo', 'bar' )
-				),
-		);
+					[ 'xpath' => '/html/body/p' ],
+					[ 'foo', 'bar' ]
+				],
+		];
 	}
 
 }

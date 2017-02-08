@@ -33,18 +33,17 @@ class HtmlParser implements IParser {
 	/**
 	 * @see IParser::filter
 	 */
-	public function filter( $data, array $opts = array() ) {
+	public function filter( $data, array $opts = [] ) {
 		if ( array_key_exists( 'xpath', $opts ) ) {
-			$xml = new \SimpleXMLElement($data);
+			$xml = new \SimpleXMLElement( $data );
 			$data = array_map(
 				function( \SimpleXMLElement $node ) {
 					return $node->asXML();
 				},
 				$xml->xpath( $opts['xpath'] )
 			);
-		}
-		else {
-			$data = array( $data );
+		} else {
+			$data = [ $data ];
 		}
 		$data = preg_replace( '!<(head|script|style)[^>]*>.*?</\\1>!is', '', $data );
 		$data = preg_replace( '/<[^>]*>/s', '', $data );

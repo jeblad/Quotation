@@ -1,6 +1,7 @@
 <?php
 
 namespace Citation;
+
 use Html;
 
 /**
@@ -33,12 +34,12 @@ class Quote {
 
 	public $quotes;
 
-	public function __construct( array $quotes = array() ) {
+	public function __construct( array $quotes = [] ) {
 		$this->quotes = $quotes;
 	}
 
-	public function validate( array $fragments, array $opts = array() ) {
-		$opts = array_merge( array( 'initial' => 140, 'final' => 140, 'middle' => 70 ), $opts );
+	public function validate( array $fragments, array $opts = [] ) {
+		$opts = array_merge( [ 'initial' => 140, 'final' => 140, 'middle' => 70 ], $opts );
 		$initial = '.{0,' . $opts{'initial'} . '}';
 		$middle = '.{0,' . $opts{'middle'} . '}';
 		$final = '.{0,' . $opts{'final'} . '}';
@@ -48,7 +49,7 @@ class Quote {
 				return null;
 			}
 		}
-		$patterns = array();
+		$patterns = [];
 		foreach ( $this->quotes as $quote ) {
 			$escaped = preg_quote( $quote, '/' );
 			$escaped = preg_replace( '/^\s*\\\\\[.*?\\\\\]\s*|^\s*/', $initial, $escaped );
@@ -57,7 +58,7 @@ class Quote {
 			$patterns[] = $escaped;
 		}
 		$pattern = '/' . implode( '|', $patterns ) . '/';
-		$valid = array();
+		$valid = [];
 		foreach ( $fragments as $str ) {
 			$valid[] = preg_match( $pattern, $str, $matches ) > 0 ? $matches[0] : false;
 		}
@@ -68,10 +69,10 @@ class Quote {
 		return $this->quotes;
 	}
 
-	public static function buildArgArrays( array $args = array(), $signature = '' ) {
+	public static function buildArgArrays( array $args = [], $signature = '' ) {
 
-		$quotes = array();
-		$params = array( 'signature' => $signature );
+		$quotes = [];
+		$params = [ 'signature' => $signature ];
 
 		foreach ( $args as $arg ) {
 
@@ -129,7 +130,7 @@ class Quote {
 		$args = func_get_args();
 		array_shift( $args );
 
-		$key = call_user_func_array( 'wfMemcKey', $args);
+		$key = call_user_func_array( 'wfMemcKey', $args );
 		$params = static::buildArgArrays( $args, $key );
 
 		$decorator = new \Citation\Decorator();
@@ -141,7 +142,7 @@ class Quote {
 
 		$previous = $wgMemc->get( $key );
 
-		if( $previous !== false ) {
+		if ( $previous !== false ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ": cached source" );
 			$parser->getOutput()->setProperty( $key, $previous );
 			return $decorator->format( $params, $previous );
@@ -154,12 +155,12 @@ class Quote {
 				$params
 			);
 			$status = \JobQueueGroup::singleton()->push( $job );
-			//\JobQueueGroup::singleton()->deduplicateRootJob( $job );
+			// JobQueueGroup::singleton()->deduplicateRootJob( $job );
 
 			$previous = $parser->getOutput()->getProperty( $key );
-			return $decorator->format( $params, $previous === false ? array() : $previous ); // TODO: should be given "pending-validation"
-		}
-		else {
+			return $decorator->format( $params, $previous === false ? [] : $previous );
+			// TODO: should be given "pending-validation"
+		} else {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ": new source" );
 			$validation = new \Citation\Job\Validation(
 				$parser->getTitle(),
@@ -168,7 +169,7 @@ class Quote {
 			$status = $validation->execute( $parser->getTitle() );
 
 			$previous = $wgMemc->get( $key );
-			return $decorator->format( $params, $previous === false ? array() : $previous );
+			return $decorator->format( $params, $previous === false ? [] : $previous );
 		}
 
 	}
