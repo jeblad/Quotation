@@ -10,7 +10,11 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "0.11.3",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^19.0.0",
     "grunt-jscs": "2.5.0",
-    "grunt-jsonlint": "1.0.7"
+    "grunt-jsonlint": "^1.1.0",
+    "grunt-karma": "^2.0.0",
+    "grunt-stylelint": "^0.6.0",
+    "karma": "^1.4.1"
   }
 }
