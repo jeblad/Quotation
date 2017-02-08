@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"jeblad"
+		]
+	},
+	"citation-desc": "Denne utvidinga legg til grunnleggande verifikasjon av sitert tekst, ved å sammenlikne den med den eksterne kilda.",
+    "citation-extensionname": "Sitering"
+}

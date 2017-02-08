@@ -1,0 +1,10 @@
+.*.swp
+*~
+.vscode
+/.project
+/composer.lock
+/vendor
+/node_modules
+/mw-includes
+/ext
+

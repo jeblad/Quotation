@@ -1,0 +1,74 @@
+{
+	"name": "Citation",
+	"version": "0.1.0",
+	"author": [
+		"John Erling Blad"
+	],
+	"url": "https://github.com/jeblad/citation",
+    "namemsg": "citation-extensionname",
+	"descriptionmsg": "citation-desc",
+	"license-name": "GPL v2",
+	"type": "parserhook",
+	"AutoloadClasses": {
+		"Citation\\Decorator":
+			"includes/Decorator.php",
+		"Citation\\Hooks":
+			"includes/Hooks.php",
+		"Citation\\Quote":
+			"includes/Quote.php",
+
+		"Citation\\Parser\\HtmlParser":
+			"includes/Parser/HtmlParser.php",
+		"Citation\\Parser\\IParser":
+			"includes/Parser/IParser.php",
+
+		"Citation\\Job\\Validation":
+			"includes/Job/Validation.php",
+		"Citation\\Job\\ValidationJob":
+			"includes/Job/ValidationJob.php",
+
+		"Citation\\Test\\HtmlParserTest":
+			"tests/phpunit/includes/Citation/HtmlParserTest.php",
+
+		"Citation\\Test\\QuoteTest":
+			"tests/phpunit/includes/Citation/QuoteTest.php"
+	},
+	"config": {
+        "_prefix": "wgCitation"
+	},
+	"callback": "Citation\\Hooks::onExtensionSetup",
+	"ExtensionMessagesFiles": {
+	},
+	"Hooks": {
+		"UnitTestsList": [
+			"Spec\\Hooks::onUnitTestsList"
+		],
+        "ParserFirstCallInit": [
+			"Spec\\Hooks::onUnitTestsList"
+        ],
+        "MagicWordwgVariableIDs": [
+			"Spec\\Hooks::onMagicWordwgVariableIDs"
+        ]
+	},
+	"MessagesDirs": {
+		"Spec": [
+			"i18n"
+		]
+	},
+	"ResourceModules": {
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "Citation/modules"
+	},
+	"TrackingCategories": [
+	],
+	"SpecialPages": {
+	},
+	"LogTypes": [
+	],
+	"JobClasses": {
+        "Validation": "Citation\\ValidationJob"
+    },
+	"manifest_version": 1
+}
