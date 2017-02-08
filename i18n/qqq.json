@@ -5,5 +5,5 @@
 		]
 	},
 	"citation-desc": "{{ citation-gloss }} {{ desc | name = Citation | url = https://github.com/jeblad/Citation }}",
-    "citation-extensionname": "{{ citation-gloss }} Alias for the extension."
+	"citation-extensionname": "{{ citation-gloss }} Alias for the extension."
 }

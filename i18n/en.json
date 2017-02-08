@@ -5,5 +5,5 @@
 		]
 	},
 	"citation-desc": "This extension adds basic verifying of quoted text, by comparing it to the external source.",
-    "citation-extensionname": "Citation"
+	"citation-extensionname": "Citation"
 }
