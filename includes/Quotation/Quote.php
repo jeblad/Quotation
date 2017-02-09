@@ -1,6 +1,6 @@
 <?php
 
-namespace Citation;
+namespace Quotation;
 
 use Html;
 
@@ -25,7 +25,7 @@ use Html;
  * @since 0.1
  *
  * @file
- * @ingroup Citation
+ * @ingroup Quotation
  *
  * @licence GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >
@@ -109,7 +109,7 @@ class Quote {
 			$params['format'] = 'block';
 		}
 
-		$params['quote'] = new \Citation\Quote( $quotes );
+		$params['quote'] = new \Quotation\Quote( $quotes );
 		$params['signature'] = $signature;
 
 		return $params;
@@ -126,9 +126,9 @@ class Quote {
 	 */
 	public static function handler( $input, array $args, \Parser $parser, \PPFrame $frame ) {
 		global $wgMemc;
-		global $wgCitationDelayedValidation;
+		global $wgQuotationDelayedValidation;
 
-		$decorator = new \Citation\Decorator();
+		$decorator = new \Quotation\Decorator();
 
 		$args[] = $input;
 
@@ -149,9 +149,9 @@ class Quote {
 			return $decorator->format( $params, $previous );
 		}
 
-		if ( $wgCitationDelayedValidation === true ) {
+		if ( $wgQuotationDelayedValidation === true ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ": pending source" );
-			$job = new \Citation\Job\ValidationJob(
+			$job = new \Quotation\Job\ValidationJob(
 				$parser->getTitle(),
 				$params
 			);
@@ -163,7 +163,7 @@ class Quote {
 			// TODO: should be given "pending-validation"
 		} else {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ": new source" );
-			$validation = new \Citation\Job\Validation(
+			$validation = new \Quotation\Job\Validation(
 				$parser->getTitle(),
 				$params
 			);

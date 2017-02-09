@@ -1,6 +1,6 @@
 <?php
 
-namespace Citation\Job;
+namespace Quotation\Job;
 
 use Html;
 use Job;
@@ -26,7 +26,7 @@ use Job;
  * @since 0.1
  *
  * @file
- * @ingroup Citation
+ * @ingroup Quotation
  *
  * @licence GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >
@@ -42,7 +42,7 @@ class Validation {
 		global $wgMemc;
 		wfDebugLog( __CLASS__, __FUNCTION__ . ": handling request " . $title->getText() );
 
-		$parser = new \Citation\Parser\HtmlParser();
+		$parser = new \Quotation\Parser\HtmlParser();
 		if ( array_key_exists( 'src', $params ) ) {
 			$srcPage = \Http::get( $params['src'] );
 			// TODO: should do some verification

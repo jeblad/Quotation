@@ -1,12 +1,9 @@
 <?php
 
-namespace Citation\Job;
-
-use Html;
-use Job;
+namespace Quotation\Parser;
 
 /**
- * Job for validation of Quote objects.
+ * Parser for stripping off all tagging from a HTML page.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,28 +23,31 @@ use Job;
  * @since 0.1
  *
  * @file
- * @ingroup Citation
+ * @ingroup Quotation
  *
  * @licence GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >
  */
-class ValidationJob extends Job {
-
-	public function __construct( \Title $title, $params = false, $id = 1 ) {
-		wfDebugLog( __CLASS__, __FUNCTION__ . ": create job title " . $title->getFullText() );
-		parent::__construct( 'Validation', $title, $params, $id );
-		$this->removeDuplicates = true; // job is expensive
-	}
+class HtmlParser implements IParser {
 
 	/**
-	 * Execute the job
-	 *
-	 * @return bool
+	 * @see IParser::filter
 	 */
-	public function run() {
-		wfDebugLog( __CLASS__, __FUNCTION__ . ': running...' );
-		$worker = new \Citation\Validation();
-		$worker->execute( $title, $params );
-		return true;
+	public function filter( $data, array $opts = [] ) {
+		if ( array_key_exists( 'xpath', $opts ) ) {
+			$xml = new \SimpleXMLElement( $data );
+			$data = array_map(
+				function( \SimpleXMLElement $node ) {
+					return $node->asXML();
+				},
+				$xml->xpath( $opts['xpath'] )
+			);
+		} else {
+			$data = [ $data ];
+		}
+		$data = preg_replace( '!<(head|script|style)[^>]*>.*?</\\1>!is', '', $data );
+		$data = preg_replace( '/<[^>]*>/s', '', $data );
+		$data = preg_replace( '/\s+/s', ' ', $data );
+		return $data;
 	}
 }

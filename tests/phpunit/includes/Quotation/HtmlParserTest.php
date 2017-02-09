@@ -1,8 +1,8 @@
 <?php
 
-namespace Citation\Test;
+namespace Quotation\Test;
 
-use Citation\HtmlParser;
+use Quotation\HtmlParser;
 
 /**
  * Test Quote\Parser.
@@ -10,11 +10,11 @@ use Citation\HtmlParser;
  * @file
  * @since 0.1
  *
- * @ingroup CitationTest
+ * @ingroup QuotationTest
  * @ingroup Test
  *
- * @group Citation
- * @group CitationParser
+ * @group Quotation
+ * @group QuotationParser
  *
  * @licence GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >
@@ -26,7 +26,7 @@ class HtmlParserTest extends \MediaWikiTestCase {
 	 * @dataProvider provideHtml
 	 */
 	public function testFilter( $html, $opts, $expected ) {
-		$parser = new \Citation\Parser\HtmlParser();
+		$parser = new \Quotation\Parser\HtmlParser();
 		$filtered = $parser->filter( $html, $opts );
 		// print_r($filtered);
 		$this->assertEquals(

@@ -4,6 +4,6 @@
 			"jeblad"
 		]
 	},
-	"citation-desc": "{{ citation-gloss }} {{ desc | name = Citation | url = https://github.com/jeblad/Citation }}",
-	"citation-extensionname": "{{ citation-gloss }} Alias for the extension."
+	"quotation-desc": "{{ quotation-gloss }} {{ desc | name = Quotation | url = https://github.com/jeblad/Quotation }}",
+	"quotation-extensionname": "{{ quotation-gloss }} Alias for the extension."
 }

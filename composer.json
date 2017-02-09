@@ -1,5 +1,5 @@
 {
-	"name": "citation/citation",
+	"name": "quotation/quotation",
 	"type": "mediawiki-extension",
 	"description": "Provides basic functionality to do testing of quoted text in Mediawiki.",
 	"keywords": [
@@ -7,9 +7,9 @@
 		"MediaWiki",
 		"extension",
 		"quotes",
-		"Citation"
+		"Quotation"
 	],
-	"homepage": "https://www.mediawiki.org/wiki/Extension:Citation",
+	"homepage": "https://www.mediawiki.org/wiki/Extension:Quotation",
 	"license": "GPL-2.0",
 	"authors": [
 		{
@@ -20,10 +20,10 @@
 		}
 	],
 	"support": {
-		"wiki": "https://www.mediawiki.org/wiki/Extension:Citation",
-		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Citation",
-		"source": "https://github.com/jeblad/citation",
-		"issues": "https://github.com/jeblad/citation/issues",
+		"wiki": "https://www.mediawiki.org/wiki/Extension:Quotation",
+		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Quotation",
+		"source": "https://github.com/jeblad/quotation",
+		"issues": "https://github.com/jeblad/quotation/issues",
 		"irc": "irc://irc.freenode.net/mediawiki"
 	},
 	"config": {

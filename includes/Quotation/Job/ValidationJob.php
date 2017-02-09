@@ -1,9 +1,12 @@
 <?php
 
-namespace Citation\Parser;
+namespace Quotation\Job;
+
+use Html;
+use Job;
 
 /**
- * Interface for parsers that transforms a downloaded file.
+ * Job for validation of Quote objects.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,22 +26,28 @@ namespace Citation\Parser;
  * @since 0.1
  *
  * @file
- * @ingroup Citation
+ * @ingroup Quotation
  *
  * @licence GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >
  */
-interface IParser {
+class ValidationJob extends Job {
+
+	public function __construct( \Title $title, $params = false, $id = 1 ) {
+		wfDebugLog( __CLASS__, __FUNCTION__ . ": create job title " . $title->getFullText() );
+		parent::__construct( 'Validation', $title, $params, $id );
+		$this->removeDuplicates = true; // job is expensive
+	}
 
 	/**
-	 * Filter down the $data and create an array of flat text versions
+	 * Execute the job
 	 *
-	 * @since 0.1
-	 *
-	 * @param any $data
-	 * @param array $opts
-	 *
-	 * @return array
+	 * @return bool
 	 */
-	public function filter( $data, array $opts = [] );
+	public function run() {
+		wfDebugLog( __CLASS__, __FUNCTION__ . ': running...' );
+		$worker = new \Quotation\Validation();
+		$worker->execute( $title, $params );
+		return true;
+	}
 }

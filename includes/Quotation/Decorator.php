@@ -1,6 +1,6 @@
 <?php
 
-namespace Citation;
+namespace Quotation;
 
 use Html;
 
@@ -25,7 +25,7 @@ use Html;
  * @since 0.1
  *
  * @file
- * @ingroup Citation
+ * @ingroup Quotation
  *
  * @licence GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >

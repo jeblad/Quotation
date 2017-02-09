@@ -1,11 +1,11 @@
 <?php
 
-namespace Citation\Test;
+namespace Quotation\Test;
 
-use Citation\Quote;
+use Quotation\Quote;
 
 /**
- * Test Citation\Quote.
+ * Test Quotation\Quote.
  *
  * @file
  * @since 0.1
@@ -13,8 +13,8 @@ use Citation\Quote;
  * @ingroup QuoteTest
  * @ingroup Test
  *
- * @group Citation
- * @group CitationQuote
+ * @group Quotation
+ * @group QuotationQuote
  *
  * @licence GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >
@@ -34,49 +34,49 @@ class QuoteTest extends \MediaWikiTestCase {
 			[ # 0
 				[],
 				[
-					'quote' => new \Citation\Quote(),
+					'quote' => new \Quotation\Quote(),
 					'format' => 'block', 'signature' => ''
 				]
 			],
 			[ # 1
 				[ "foo" ],
 				[
-					'quote' => new \Citation\Quote( [ "foo" ] ),
+					'quote' => new \Quotation\Quote( [ "foo" ] ),
 					'format' => 'block', 'signature' => ''
 				]
 			],
 			[ # 2
 				[ "block" ],
 				[
-					'quote' => new \Citation\Quote(),
+					'quote' => new \Quotation\Quote(),
 					'format' => 'block', 'signature' => ''
 				]
 			],
 			[ # 3
 				[ "inline" ],
 				[
-					'quote' => new \Citation\Quote(),
+					'quote' => new \Quotation\Quote(),
 					'format' => 'inline', 'signature' => ''
 				]
 			],
 			[ # 4
 				[ "href=foo" ],
 				[
-					'quote' => new \Citation\Quote(),
+					'quote' => new \Quotation\Quote(),
 					'href' => 'foo', 'format' => 'block', 'signature' => ''
 				]
 			],
 			[ # 5
 				[ "src=foo" ],
 				[
-					'quote' => new \Citation\Quote(),
+					'quote' => new \Quotation\Quote(),
 					'href' => 'foo', 'src' => 'foo', 'format' => 'block', 'signature' => ''
 				]
 			],
 			[ # 6
 				[ "src=foo", "href=bar", "block", "ping", "pong" ],
 				[
-					'quote' => new \Citation\Quote( [ "ping", "pong" ] ),
+					'quote' => new \Quotation\Quote( [ "ping", "pong" ] ),
 					'href' => 'bar', 'src' => 'foo', 'format' => 'block', 'signature' => ''
 				]
 			]

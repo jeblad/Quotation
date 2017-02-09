@@ -1,9 +1,9 @@
 <?php
 
-namespace Citation;
+namespace Quotation;
 
 /**
- * Hook handlers for the Citation extension
+ * Hook handlers for the Quotation extension
  *
  * @ingroup Extensions
  */
@@ -44,7 +44,7 @@ class Hooks {
 	 * @param Parser $parser
 	 */
 	public static function onParserFirstCallInit( \Parser $parser ) {
-		$parser->setHook( 'quote', 'Citation\\Quote::handler' );
+		$parser->setHook( 'quote', 'Quotation\\Quote::handler' );
 		return true;
 	}
 }

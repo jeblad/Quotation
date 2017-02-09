@@ -1,9 +1,9 @@
 <?php
 
-namespace Citation\Parser;
+namespace Quotation\Parser;
 
 /**
- * Parser for stripping off all tagging from a HTML page.
+ * Interface for parsers that transforms a downloaded file.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,31 +23,22 @@ namespace Citation\Parser;
  * @since 0.1
  *
  * @file
- * @ingroup Citation
+ * @ingroup Quotation
  *
  * @licence GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >
  */
-class HtmlParser implements IParser {
+interface IParser {
 
 	/**
-	 * @see IParser::filter
+	 * Filter down the $data and create an array of flat text versions
+	 *
+	 * @since 0.1
+	 *
+	 * @param any $data
+	 * @param array $opts
+	 *
+	 * @return array
 	 */
-	public function filter( $data, array $opts = [] ) {
-		if ( array_key_exists( 'xpath', $opts ) ) {
-			$xml = new \SimpleXMLElement( $data );
-			$data = array_map(
-				function( \SimpleXMLElement $node ) {
-					return $node->asXML();
-				},
-				$xml->xpath( $opts['xpath'] )
-			);
-		} else {
-			$data = [ $data ];
-		}
-		$data = preg_replace( '!<(head|script|style)[^>]*>.*?</\\1>!is', '', $data );
-		$data = preg_replace( '/<[^>]*>/s', '', $data );
-		$data = preg_replace( '/\s+/s', ' ', $data );
-		return $data;
-	}
+	public function filter( $data, array $opts = [] );
 }

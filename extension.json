@@ -1,55 +1,55 @@
 {
-	"name": "Citation",
+	"name": "Quotation",
 	"version": "0.1.0",
 	"author": [
 		"John Erling Blad"
 	],
-	"url": "https://github.com/jeblad/citation",
-	"namemsg": "citation-extensionname",
-	"descriptionmsg": "citation-desc",
+	"url": "https://github.com/jeblad/quotation",
+	"namemsg": "quotation-extensionname",
+	"descriptionmsg": "quotation-desc",
 	"license-name": "GPL v2",
 	"type": "parserhook",
 	"AutoloadClasses": {
-		"Citation\\Decorator":
-			"includes/Citation/Decorator.php",
-		"Citation\\Hooks":
-			"includes/Citation/Hooks.php",
-		"Citation\\Quote":
-			"includes/Citation/Quote.php",
+		"Quotation\\Decorator":
+			"includes/Quotation/Decorator.php",
+		"Quotation\\Hooks":
+			"includes/Quotation/Hooks.php",
+		"Quotation\\Quote":
+			"includes/Quotation/Quote.php",
 
-		"Citation\\Parser\\HtmlParser":
-			"includes/Citation/Parser/HtmlParser.php",
-		"Citation\\Parser\\IParser":
-			"includes/Citation/Parser/IParser.php",
+		"Quotation\\Parser\\HtmlParser":
+			"includes/Quotation/Parser/HtmlParser.php",
+		"Quotation\\Parser\\IParser":
+			"includes/Quotation/Parser/IParser.php",
 
-		"Citation\\Job\\Validation":
-			"includes/Citation/Job/Validation.php",
-		"Citation\\Job\\ValidationJob":
-			"includes/Citation/Job/ValidationJob.php",
+		"Quotation\\Job\\Validation":
+			"includes/Quotation/Job/Validation.php",
+		"Quotation\\Job\\ValidationJob":
+			"includes/Quotation/Job/ValidationJob.php",
 
-		"Citation\\Test\\HtmlParserTest":
-			"tests/phpunit/includes/Citation/HtmlParserTest.php",
+		"Quotation\\Test\\HtmlParserTest":
+			"tests/phpunit/includes/Quotation/HtmlParserTest.php",
 
-		"Citation\\Test\\QuoteTest":
-			"tests/phpunit/includes/Citation/QuoteTest.php"
+		"Quotation\\Test\\QuoteTest":
+			"tests/phpunit/includes/Quotation/QuoteTest.php"
 	},
 	"config": {
-		"_prefix": "wgCitation",
+		"_prefix": "wgQuotation",
 		"DelayedValidation": false
 	},
-	"callback": "Citation\\Hooks::onExtensionSetup",
+	"callback": "Quotation\\Hooks::onExtensionSetup",
 	"ExtensionMessagesFiles": {
 	},
 	"Hooks": {
 		"UnitTestsList": [
-			"Citation\\Hooks::onUnitTestsList"
+			"Quotation\\Hooks::onUnitTestsList"
 		],
 		"ParserFirstCallInit": [
-			"Citation\\Hooks::onParserFirstCallInit"
+			"Quotation\\Hooks::onParserFirstCallInit"
 		]
 	},
 	"MessagesDirs": {
-		"Citation": [
+		"Quotation": [
 			"i18n"
 		]
 	},
@@ -57,7 +57,7 @@
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "modules",
-		"remoteExtPath": "Citation/modules"
+		"remoteExtPath": "Quotation/modules"
 	},
 	"TrackingCategories": [
 	],
@@ -66,7 +66,7 @@
 	"LogTypes": [
 	],
 	"JobClasses": {
-		"Validation": "Citation\\Job\\ValidationJob"
+		"Validation": "Quotation\\Job\\ValidationJob"
 	},
 	"manifest_version": 1
 }
