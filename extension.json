@@ -5,27 +5,27 @@
 		"John Erling Blad"
 	],
 	"url": "https://github.com/jeblad/citation",
-    "namemsg": "citation-extensionname",
+	"namemsg": "citation-extensionname",
 	"descriptionmsg": "citation-desc",
 	"license-name": "GPL v2",
 	"type": "parserhook",
 	"AutoloadClasses": {
 		"Citation\\Decorator":
-			"includes/Decorator.php",
+			"includes/Citation/Decorator.php",
 		"Citation\\Hooks":
-			"includes/Hooks.php",
+			"includes/Citation/Hooks.php",
 		"Citation\\Quote":
-			"includes/Quote.php",
+			"includes/Citation/Quote.php",
 
 		"Citation\\Parser\\HtmlParser":
-			"includes/Parser/HtmlParser.php",
+			"includes/Citation/Parser/HtmlParser.php",
 		"Citation\\Parser\\IParser":
-			"includes/Parser/IParser.php",
+			"includes/Citation/Parser/IParser.php",
 
 		"Citation\\Job\\Validation":
-			"includes/Job/Validation.php",
+			"includes/Citation/Job/Validation.php",
 		"Citation\\Job\\ValidationJob":
-			"includes/Job/ValidationJob.php",
+			"includes/Citation/Job/ValidationJob.php",
 
 		"Citation\\Test\\HtmlParserTest":
 			"tests/phpunit/includes/Citation/HtmlParserTest.php",
@@ -34,24 +34,22 @@
 			"tests/phpunit/includes/Citation/QuoteTest.php"
 	},
 	"config": {
-        "_prefix": "wgCitation"
+		"_prefix": "wgCitation",
+		"DelayedValidation": false
 	},
 	"callback": "Citation\\Hooks::onExtensionSetup",
 	"ExtensionMessagesFiles": {
 	},
 	"Hooks": {
 		"UnitTestsList": [
-			"Spec\\Hooks::onUnitTestsList"
+			"Citation\\Hooks::onUnitTestsList"
 		],
-        "ParserFirstCallInit": [
-			"Spec\\Hooks::onUnitTestsList"
-        ],
-        "MagicWordwgVariableIDs": [
-			"Spec\\Hooks::onMagicWordwgVariableIDs"
-        ]
+		"ParserFirstCallInit": [
+			"Citation\\Hooks::onParserFirstCallInit"
+		]
 	},
 	"MessagesDirs": {
-		"Spec": [
+		"Citation": [
 			"i18n"
 		]
 	},
@@ -68,7 +66,7 @@
 	"LogTypes": [
 	],
 	"JobClasses": {
-        "Validation": "Citation\\ValidationJob"
-    },
+		"Validation": "Citation\\Job\\ValidationJob"
+	},
 	"manifest_version": 1
 }

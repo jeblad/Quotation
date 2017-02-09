@@ -117,38 +117,39 @@ class Quote {
 
 	/**
 	 * Handler for "quote" parser function
-	 *
+	 * @todo fix param
 	 * @param \Parser &$parser
 	 *
 	 * @since 0.1
 	 *
 	 * @return array
 	 */
-	public static function handler( \Parser &$parser ) {
+	public static function handler( $input, array $args, \Parser $parser, \PPFrame $frame ) {
 		global $wgMemc;
-
-		$args = func_get_args();
-		array_shift( $args );
-
-		$key = call_user_func_array( 'wfMemcKey', $args );
-		$params = static::buildArgArrays( $args, $key );
+		global $wgCitationDelayedValidation;
 
 		$decorator = new \Citation\Decorator();
 
-		if ( !array_key_exists( 'src', $params ) ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": no source" );
+		$args[] = $input;
+
+		if ( !array_key_exists( 'src', $args ) ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ": no signature found" );
+			$params = static::buildArgArrays( $args );
 			return $decorator->format( $params );
 		}
 
+		$key = call_user_func_array( 'wfMemcKey', $args );
+		wfDebugLog( __CLASS__, __FUNCTION__ . ": key:" . $key );
 		$previous = $wgMemc->get( $key );
+		$params = static::buildArgArrays( $args, $key );
 
 		if ( $previous !== false ) {
-			wfDebugLog( __CLASS__, __FUNCTION__ . ": cached source" );
+			wfDebugLog( __CLASS__, __FUNCTION__ . ": cached source found" );
 			$parser->getOutput()->setProperty( $key, $previous );
 			return $decorator->format( $params, $previous );
 		}
 
-		if ( defined( 'CITATION_DELAYED_VALIDATION' ) && CITATION_DELAYED_VALIDATION === true ) {
+		if ( $wgCitationDelayedValidation === true ) {
 			wfDebugLog( __CLASS__, __FUNCTION__ . ": pending source" );
 			$job = new \Citation\Job\ValidationJob(
 				$parser->getTitle(),
