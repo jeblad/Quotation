@@ -16,7 +16,7 @@ Naming of this extension has changed from Quote to Ctation, and is not consisten
 
 Core documents
 
-* Extension page on mediawiki.org: https://www.mediawiki.org/wiki/User:Jeblad/Quote (old doc)
+* Extension page on mediawiki.org: https://www.mediawiki.org/wiki/Extension:Quotation
 * Latest version of the readme file: https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/extensions/Quotation.git;a=blob;f=README
 
 
