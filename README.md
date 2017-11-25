@@ -2,7 +2,7 @@
 
 ## Scope
 
-This is an extension that adds basic features for quotes in quotations. This is to facilitate continuous verification of the validity of those statements, and their reuse in wikitext on a wiki running the Mediawiki software.
+This is an extension that adds basic features for quotes in quotations, to facilitate continuous verification of the validity of those statements, and to check their reuse in wikitext on a wiki running the Mediawiki software.
 
 The project is on-going, and as such will be extremely unstable &ndash; it might even trigger a meltdown of your computer. :)
 
