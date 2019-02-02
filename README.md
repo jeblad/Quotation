@@ -12,6 +12,28 @@ The _head_ of the extension is targeted at an old version of the server software
 
 Naming of this extension has changed from Quote to Ctation, and is not consistent.
 
+### Markup
+
+All sequences that replaces something is encapsulated in square brackets. Any single character in brackets is replaced within word, same count of word separators pluss one in brackets is replaced within string, and same count of sentence terminators pluss one in brackets is replaced within string. In addition the special forms exists
+
+- [․] (brackets around U+2024, ONE DOT LEADER) – several characters within a single word is replaced
+- [‥] (brackets around U+2025, TWO DOT LEADER) – several words within a constituent is replaced
+- […] (brackets around U+2026, HORIZONTAL ELLIPSIS) – several constituents over a sentence is replaced
+
+This gives the following examples, given the following source text
+
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+To quote a short fragment, and change a single character, a quote could be `[C]onsectetur adipisicing elit`. It will only be truty if a single character is changed, that is the first character "c" in "consectetur", and it is of a similar character class.
+
+To quote a short fragment, and change several characters, a quote could be `[CON]sectetur adipisicing elit`. It will only be truty if the same number of characters are changed, that is the first characters "con" in "consectetur", and they are pairwise of similar character classes.
+
+To quote a short fragment, and remove a word, a quote could be `consectetur [․] elit`. It will only be truty if the characters removed does not span a word boudrary.
+
+To quote a short fragment, and remove several words, a quote could be `Lorem [‥] sit amet`. It will only be truty if the characters removed does not span a constituent boudrary.
+
+To quote a short fragment, and remove a constituent, a quote could be `Lorem ipsum dolor sit amet, […] sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`. It will only be truty if the characters removed does not span a sentence boudrary.
+
 ## Referenced documents
 
 Core documents
