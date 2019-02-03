@@ -35,10 +35,10 @@ interface IParser {
 	 *
 	 * @since 0.1
 	 *
-	 * @param any $data
+	 * @param mixed $data
 	 * @param array $opts
 	 *
 	 * @return array
 	 */
-	public function filter( $data, array $opts = [] );
+	public function filter( mixed $data, array $opts = [] );
 }

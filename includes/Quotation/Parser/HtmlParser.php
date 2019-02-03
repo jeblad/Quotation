@@ -33,7 +33,7 @@ class HtmlParser implements IParser {
 	/**
 	 * @see IParser::filter
 	 */
-	public function filter( $data, array $opts = [] ) {
+	public function filter( mixed $data, array $opts = [] ) {
 		if ( array_key_exists( 'xpath', $opts ) ) {
 			$xml = new \SimpleXMLElement( $data );
 			$data = array_map(
