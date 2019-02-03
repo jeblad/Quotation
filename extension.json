@@ -25,25 +25,15 @@
 		"Quotation\\Job\\Validation":
 			"includes/Quotation/Job/Validation.php",
 		"Quotation\\Job\\ValidationJob":
-			"includes/Quotation/Job/ValidationJob.php",
-
-		"Quotation\\Test\\HtmlParserTest":
-			"tests/phpunit/includes/Quotation/HtmlParserTest.php",
-
-		"Quotation\\Test\\QuoteTest":
-			"tests/phpunit/includes/Quotation/QuoteTest.php"
+			"includes/Quotation/Job/ValidationJob.php"
 	},
 	"config": {
-		"_prefix": "wgQuotation",
-		"DelayedValidation": false
+		"QuotationDelayedValidation": false
 	},
 	"callback": "Quotation\\Hooks::onExtensionSetup",
 	"ExtensionMessagesFiles": {
 	},
 	"Hooks": {
-		"UnitTestsList": [
-			"Quotation\\Hooks::onUnitTestsList"
-		],
 		"ParserFirstCallInit": [
 			"Quotation\\Hooks::onParserFirstCallInit"
 		]
