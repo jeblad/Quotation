@@ -31,15 +31,6 @@ class Hooks {
 	}
 
 	/**
-	 * Setup for the tests
-	 * @param string[] $files
-	 */
-	public static function onUnitTestsList( array &$files ) {
-		$files[] = __DIR__ . '/../tests/phpunit/';
-		return true;
-	}
-
-	/**
 	 * Register the quote tag function
 	 * @param Parser $parser
 	 */
