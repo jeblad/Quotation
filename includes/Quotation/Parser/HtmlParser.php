@@ -34,6 +34,7 @@ class HtmlParser implements IParser {
 	 * @see IParser::filter
 	 */
 	public function filter( mixed $data, array $opts = [] ) {
+		// extract some subpart
 		if ( array_key_exists( 'xpath', $opts ) ) {
 			$xml = new \SimpleXMLElement( $data );
 			$data = array_map(
@@ -44,12 +45,16 @@ class HtmlParser implements IParser {
 			);
 		}
 
-		if ( is_string( $data ) ) {
+		// repackage 
+		if ( !is_array( $data ) ) {
 			$data = [ $data ];
 		}
 
+		// remove tags with content
 		$data = preg_replace( '!<(head|script|style)[^>]*>.*?</\\1>!is', '', $data );
+		// remove tags, leave content
 		$data = preg_replace( '/<[^>]*>/s', '', $data );
+		// remove repeated spaces
 		$data = preg_replace( '/\s+/s', ' ', $data );
 
 		return $data;
