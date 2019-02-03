@@ -42,12 +42,16 @@ class HtmlParser implements IParser {
 				},
 				$xml->xpath( $opts['xpath'] )
 			);
-		} else {
+		}
+
+		if ( is_string( $data ) ) {
 			$data = [ $data ];
 		}
+
 		$data = preg_replace( '!<(head|script|style)[^>]*>.*?</\\1>!is', '', $data );
 		$data = preg_replace( '/<[^>]*>/s', '', $data );
 		$data = preg_replace( '/\s+/s', ' ', $data );
+
 		return $data;
 	}
 }
