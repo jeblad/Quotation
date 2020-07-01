@@ -1,5 +1,8 @@
 # Quotation
 
+![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues-raw/jeblad/Quotation?style=for-the-badge)
+
 ## Scope
 
 This is an extension that adds basic features for quotes in quotations, to facilitate continuous verification of the validity of those statements, and to check their reuse in wikitext on a wiki running the Mediawiki software.
